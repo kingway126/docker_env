@@ -52,3 +52,14 @@ services:
       - "I18N_LOCALE=zh-CN"
       - "SERVER_HOST=0.0.0.0"
       - "SERVER_SHUTDOWNTIMEOUT=5s"
+  kafka-map:
+    container_name: kafka-map
+    image: dushixiang/kafka-map:latest
+    ports:
+      - 8055:8080
+    volumes:
+      - ./kafka-map/data:/usr/local/kafka-map/data
+    environment:
+      - "DEFAULT_USERNAME=admin"
+      - "DEFAULT_PASSWORD=admin"
+    restart: always
