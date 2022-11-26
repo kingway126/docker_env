@@ -1,0 +1,11 @@
+http.host: 0.0.0.0
+
+#允许head插件等访问的相关设置
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+http.cors.allow-headers: Authorization,X-Requested-With,Content-Length,Content-Type
+http.cors.allow-credentials: true
+#是否启用es的安全设置，启用安全设置后es各节点、客户端的传输都会加密，并需要账号密码
+#xpack.security.enabled: true
+#此项不可更改，当启用安全设置后，此项必须为true
+xpack.security.transport.ssl.enabled: true

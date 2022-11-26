@@ -1,0 +1,54 @@
+version: '3'
+services:
+  redis:
+    image: redis:6.2
+    container_name: redis-6.2
+    restart: always
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf", "--appendonly", "yes"]
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis/config:/usr/local/etc/redis
+      - ./redis/data:/data
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/config:/etc/mysql/conf.d
+      - ./mysql/logs:/logs
+      - ./mysql/data:/var/lib/mysql
+  elasticsearch:
+    container_name: es-7.17
+    image: elasticsearch:7.17.7
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./es/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./es/data:/usr/share/elasticsearch/data
+      - ./es/plugins:/usr/share/elasticsearch/plugins
+    environment:
+      - "ES_JAVA_OPTS=-Xms64m -Xmx128m"
+      - "discovery.type=single-node"
+      - "COMPOSE_PROJECT_NAME=elasticsearch-server"
+    restart: always
+  kibana:
+    container_name: kibana-7.17
+    image: kibana:7.17.7
+    ports:
+      - 5601:5601
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - ./kibana/data:/usr/share/kibana/data
+    restart: always
+    links:
+      - elasticsearch:elasticsearch
+    environment:
+      - "I18N_LOCALE=zh-CN"
+      - "SERVER_HOST=0.0.0.0"
+      - "SERVER_SHUTDOWNTIMEOUT=5s"
