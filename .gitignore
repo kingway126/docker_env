@@ -1,7 +1,7 @@
-/kibana/data/
-/mysql/data/
-/mysql/logs/
-/redis/data/
-/es/data/
-/es/plugins/
-/kafka-map/data/
+/work/kibana/data/
+/work/mysql/data/
+/work/mysql/logs/
+/work/redis/data/
+/work/es/data/
+/work/es/plugins/
+/work/kafka-map/data/
