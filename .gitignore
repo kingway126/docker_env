@@ -12,3 +12,5 @@
 /elk/es/data/
 /elk/es/plugins/
 /elk/logstash/logs/
+/prom/grafana/data/
+/prom/grafana/provisioning/
