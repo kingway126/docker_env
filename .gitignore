@@ -2,10 +2,12 @@
 /work/mysql/data/
 /work/mysql/logs/
 /work/redis/data/
-/work/es/data/
-/work/es/plugins/
+/es/es/data/
+/es/es/plugins/
 /work/kafka-map/data/
 /consul-cluster/data/
 /work/kibana/data/
 /ui/kafka-map/data/
-/ui/kibana/data/
+/es/kibana/data/
+/es/es/data/
+/es/kibana/data/

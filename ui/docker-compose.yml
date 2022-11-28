@@ -19,27 +19,11 @@ services:
     networks:
       - work_net
 
-  kibana:
-    container_name: kibana-7.17
-    image: kibana:7.17.7
-    ports:
-      - 5601:5601
-    volumes:
-      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
-      - ./kibana/data:/usr/share/kibana/data
+  hystrix-dashboard:
+    container_name: hystrix-dashboard
+    image: cap1573/hystrix-dashboard
     restart: always
-    environment:
-      - "I18N_LOCALE=zh-CN"
-      - "SERVER_HOST=0.0.0.0"
-      - "SERVER_SHUTDOWNTIMEOUT=5s"
+    ports:
+      - 9002:9002
     networks:
       - work_net
-
-  hystrix-dashboard:
-   container_name: hystrix-dashboard
-   image: cap1573/hystrix-dashboard
-   restart: always
-   ports:
-    - 9002:9002
-   networks:
-    - work_net

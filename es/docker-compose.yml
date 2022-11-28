@@ -1,0 +1,56 @@
+version: "3"
+
+networks:
+  work_net:
+    external: true
+
+services:
+  elasticsearch:
+    container_name: es-7.17
+    image: elasticsearch:7.17.7
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./es/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./es/data:/usr/share/elasticsearch/data
+      - ./es/plugins:/usr/share/elasticsearch/plugins
+    environment:
+      - "ES_JAVA_OPTS=-Xms64m -Xmx128m"
+      - "discovery.type=single-node"
+      - "COMPOSE_PROJECT_NAME=elasticsearch-server"
+    restart: always
+    networks:
+      - work_net
+
+  kibana:
+    container_name: kibana-7.17
+    image: kibana:7.17.7
+    ports:
+      - 5601:5601
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - ./kibana/data:/usr/share/kibana/data
+    restart: always
+    environment:
+      - "I18N_LOCALE=zh-CN"
+      - "SERVER_HOST=0.0.0.0"
+      - "SERVER_SHUTDOWNTIMEOUT=5s"
+    networks:
+      - work_net
+
+  logstash:
+    image: logstash:7.17.7
+    container_name: logstash-7.17
+    restart: always
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    depends_on:
+      - elasticsearch #kibana在elasticsearch启动之后再启动
+    ports:
+        - 5044:5044
+        - 5000:5000
+        - 9600:9600
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"

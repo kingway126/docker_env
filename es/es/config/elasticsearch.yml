@@ -9,3 +9,4 @@ http.cors.allow-credentials: true
 #xpack.security.enabled: true
 #此项不可更改，当启用安全设置后，此项必须为true
 xpack.security.transport.ssl.enabled: true
+xpack.monitoring.collection.enabled: true
