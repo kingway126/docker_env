@@ -1,4 +1,7 @@
 version: '3'
+networks:
+  work:
+
 services:
   redis:
     image: redis:6.2
@@ -10,6 +13,8 @@ services:
     volumes:
       - ./redis/config:/usr/local/etc/redis
       - ./redis/data:/data
+    networks:
+      - work
   mysql:
     image: mysql:5.7
     container_name: mysql-5.7
@@ -22,6 +27,8 @@ services:
       - ./mysql/config:/etc/mysql/conf.d
       - ./mysql/logs:/logs
       - ./mysql/data:/var/lib/mysql
+    networks:
+      - work
   elasticsearch:
     container_name: es-7.17
     image: elasticsearch:7.17.7
@@ -37,6 +44,8 @@ services:
       - "discovery.type=single-node"
       - "COMPOSE_PROJECT_NAME=elasticsearch-server"
     restart: always
+    networks:
+      - work
   kibana:
     container_name: kibana-7.17
     image: kibana:7.17.7
@@ -52,6 +61,8 @@ services:
       - "I18N_LOCALE=zh-CN"
       - "SERVER_HOST=0.0.0.0"
       - "SERVER_SHUTDOWNTIMEOUT=5s"
+    networks:
+      - work
   kafka-map:
     container_name: kafka-map
     image: dushixiang/kafka-map:latest
@@ -63,3 +74,5 @@ services:
       - "DEFAULT_USERNAME=admin"
       - "DEFAULT_PASSWORD=admin"
     restart: always
+    networks:
+      - work
