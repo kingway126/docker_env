@@ -53,9 +53,9 @@ services:
       - elasticsearch #kibana在elasticsearch启动之后再启动
     ports:
         - 5044:5044
-        - 5000:5000
         - 9600:9600
     environment:
-      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+      - "ES_JAVA_OPTS=-Xms64m -Xmx128m"
+      - "LOG_LEVEL=debug"
     networks:
       - work_net
