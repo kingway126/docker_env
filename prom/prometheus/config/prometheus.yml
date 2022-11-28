@@ -8,4 +8,4 @@ scrape_configs:
     scrape_interval: 5s #覆盖默认值
     static_configs:
       # 这个可以改，但是需要每个服务能暴露访问到
-      - targets: ['192.168.0.108:9192']
+      - targets: ['192.168.31.6:9192']
