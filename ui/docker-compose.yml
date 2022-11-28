@@ -40,6 +40,6 @@ services:
    image: cap1573/hystrix-dashboard
    restart: always
    ports:
-     - 9002:9002
+    - 9002:9002
    networks:
     - work_net
