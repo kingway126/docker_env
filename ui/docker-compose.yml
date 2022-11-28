@@ -1,7 +1,7 @@
 version: "3"
 
 networks:
-  work_work:
+  work_net:
     external: true
 
 services:
@@ -17,7 +17,8 @@ services:
       - "DEFAULT_PASSWORD=admin"
     restart: always
     networks:
-      - work_work
+      - work_net
+
   kibana:
     container_name: kibana-7.17
     image: kibana:7.17.7
@@ -32,4 +33,4 @@ services:
       - "SERVER_HOST=0.0.0.0"
       - "SERVER_SHUTDOWNTIMEOUT=5s"
     networks:
-      - work_work
+      - work_net
