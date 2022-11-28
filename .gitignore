@@ -6,8 +6,9 @@
 /es/es/plugins/
 /work/kafka-map/data/
 /consul-cluster/data/
-/work/kibana/data/
 /ui/kafka-map/data/
 /es/kibana/data/
-/es/es/data/
-/es/kibana/data/
+/elk/kibana/data/
+/elk/es/data/
+/elk/es/plugins/
+/elk/logstash/logs/

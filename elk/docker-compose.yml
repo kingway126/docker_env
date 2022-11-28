@@ -32,6 +32,8 @@ services:
       - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
       - ./kibana/data:/usr/share/kibana/data
     restart: always
+    depends_on:
+      - elasticsearch #kibana在elasticsearch启动之后再启动
     environment:
       - "I18N_LOCALE=zh-CN"
       - "SERVER_HOST=0.0.0.0"
@@ -46,6 +48,7 @@ services:
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./logstash/logs:/usr/share/logstash/logs
     depends_on:
       - elasticsearch #kibana在elasticsearch启动之后再启动
     ports:
@@ -54,3 +57,5 @@ services:
         - 9600:9600
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - work_net
