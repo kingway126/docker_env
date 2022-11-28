@@ -37,7 +37,7 @@ services:
 
   hystrix-dashboard:
    container_name: hystrix-dashboard
-   image: cap1573/hystrix-dashboar:latest
+   image: cap1573/hystrix-dashboard
    restart: always
    ports:
      - 9002:9002
