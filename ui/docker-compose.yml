@@ -1,0 +1,35 @@
+version: "3"
+
+networks:
+  work_work:
+    external: true
+
+services:
+  kafka-map:
+    container_name: kafka-map
+    image: dushixiang/kafka-map:latest
+    ports:
+      - 8055:8080
+    volumes:
+      - ./kafka-map/data:/usr/local/kafka-map/data
+    environment:
+      - "DEFAULT_USERNAME=admin"
+      - "DEFAULT_PASSWORD=admin"
+    restart: always
+    networks:
+      - work_work
+  kibana:
+    container_name: kibana-7.17
+    image: kibana:7.17.7
+    ports:
+      - 5601:5601
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - ./kibana/data:/usr/share/kibana/data
+    restart: always
+    environment:
+      - "I18N_LOCALE=zh-CN"
+      - "SERVER_HOST=0.0.0.0"
+      - "SERVER_SHUTDOWNTIMEOUT=5s"
+    networks:
+      - work_work

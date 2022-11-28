@@ -1,4 +1,4 @@
-/work/kibana/data/
+/ui/kibana/data/
 /work/mysql/data/
 /work/mysql/logs/
 /work/redis/data/
@@ -6,3 +6,5 @@
 /work/es/plugins/
 /work/kafka-map/data/
 /consul-cluster/data/
+/ui/kibana/data/
+/ui/kafka-map/data/
