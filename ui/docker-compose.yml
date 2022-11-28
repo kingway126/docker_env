@@ -34,3 +34,12 @@ services:
       - "SERVER_SHUTDOWNTIMEOUT=5s"
     networks:
       - work_net
+
+  hystrix-dashboard:
+   container_name: hystrix-dashboard
+   image: cap1573/hystrix-dashboar:latest
+   restart: always
+   ports:
+     - 9002:9002
+   networks:
+    - work_net
