@@ -14,3 +14,6 @@
 /elk/logstash/logs/
 /prom/grafana/data/
 /prom/grafana/provisioning/
+/work/nginx/html/
+/work/nginx/logs/
+/work/nginx/conf.d/
