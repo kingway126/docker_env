@@ -27,6 +27,19 @@ services:
       - ./mysql/data:/var/lib/mysql
     networks:
       - net
+  nginx:
+    image: nginx:stable-alpine-perl
+    container_name: nginx
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/html:/usr/share/nginx/html
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - net
 
 
 networks:
